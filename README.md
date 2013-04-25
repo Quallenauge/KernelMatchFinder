@@ -12,7 +12,7 @@ $KernelMatchFinderDir/searchBestBet $KernelMatchFinderDir/out_latest.txt ./filel
 ```
 
 Where
-out_latest contains the best matches.
-filelist contains a list of files, which as to be analyzed.
-The commit is the base commit which is used as reference.
-The last argument specifies the search range, for example: 10901a16fe4de0f037d18d461ff5af694160dde1..omapzoom/p-android-omap-3.0
+<br/><b>out_latest</b> contains the best matches.
+<br/><b>filelist</b> contains a list of files, which as to be analyzed.
+<br/>The commit is the base commit which is used as reference. <b>c73ed6e4d48639a298771e760083979705491c88</b>
+<br/>The last argument specifies the search range, for example: <b>10901a16fe4de0f037d18d461ff5af694160dde1..omapzoom/p-android-omap-3.0</b>
