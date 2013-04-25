@@ -1,0 +1,20 @@
+#!/bin/bash
+
+COMMIT=$3
+PATHTOCOMPARE=$2
+#echo Commit: $COMMIT
+#echo Path to compare: $PATHTOCOMPARE
+
+#set -x
+lineCount=`git diff --minimal $COMMIT $1 $PATHTOCOMPARE | wc -l`
+git diff $COMMIT $1 --minimal $PATHTOCOMPARE >/dev/null 2>/dev/null
+if [ $? -ne 0 ]
+then
+#    echo "git diff failure...abort!"
+    exit -1
+fi
+
+printf  "%05i\t" $lineCount
+echo changes `git diff-tree -s --pretty="%ai - %s"  $COMMIT` for commit ---- $COMMIT
+
+exit $lineCount

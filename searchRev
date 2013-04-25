@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PWD=`dirname $0`
+
+#git for-each-ref --shell --format 'echo -n %(objectname) " "; git diff %(objectname) --minimal | wc -l' | sort -n -k 2 -r | tail >/tmp/refCommands
+#git for-each-ref --shell --format 'echo -n %(objectname) " "; git diff %(objectname) --minimal | wc -l' $1 tail >/tmp/refCommands
+
+#turn debugging on
+#set -x
+
+#git rev-list --after="Fri, 14 Oct 2011 01:45:58 -0500" $1 | parallel $PWD/searchDiff $2 $3 {}
+REV_LIST=`git log --format=%H --after="Fri, 14 Jan 2012 01:45:58 -0500" $1`
+
+#turn debuuging off
+#set +x
+#parallel $PWD/searchDiff  $2 $3 ::: ${REV_LIST}
+
+for i in ${REV_LIST};
+do
+    $PWD/searchDiff  $2 $3 $i
+    lineCount=$?
+    if [ $lineCount -eq 0 ]; then
+#	echo "Found best revision!" >&2
+	exit 0
+    fi
+done

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PWD=`dirname $0`
+
+FILENAME=$3
+REVRANGE=$2
+BASE_COMMIT=$1
+
+RESULT=`$PWD/searchRev $REVRANGE $BASE_COMMIT $FILENAME | sort | tac | tail -n1`
+#RESULT=`$PWD/searchRev $REVRANGE $BASE_COMMIT $FILENAME | sort | tac`
+echo -e  $RESULT ---- $FILENAME

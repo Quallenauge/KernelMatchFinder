@@ -1,0 +1,27 @@
+#!/bin/bash
+
+PWD=`dirname $0`
+
+OUT_FILE=$1
+echo "Using $1 as OUT_FILE"
+FILELIST=$2
+echo "Using $2 as FILELIST"
+BASE_REV=$3
+echo "Using Revision $BASE_REV to compare as base revision"
+RANGE=10901a16fe4de0f037d18d461ff5af694160dde1..omapzoom/p-android-omap-3.0
+echo "Using Rang $RANGE as range"
+
+echo >/tmp/filelist
+
+for i in `cat $FILELIST`
+do
+    isInList=`grep $i $OUT_FILE | wc -l`
+    if [ 0 -eq $isInList ];
+    then
+	echo "$i is not yet parsed..." >&2
+	echo $i >>/tmp/filelist
+    else
+	echo "$i is already parsed..." >&2
+    fi
+done
+cat "/tmp/filelist" | parallel -j9 $PWD/searchBestBet_part $BASE_REV $RANGE | tee -a $OUT_FILE
