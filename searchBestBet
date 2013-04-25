@@ -7,8 +7,9 @@ echo "Using $1 as OUT_FILE"
 FILELIST=$2
 echo "Using $2 as FILELIST"
 BASE_REV=$3
+RANGE=$4
 echo "Using Revision $BASE_REV to compare as base revision"
-RANGE=10901a16fe4de0f037d18d461ff5af694160dde1..omapzoom/p-android-omap-3.0
+#RANGE=10901a16fe4de0f037d18d461ff5af694160dde1..omapzoom/p-android-omap-3.0
 echo "Using Rang $RANGE as range"
 
 echo >/tmp/filelist
